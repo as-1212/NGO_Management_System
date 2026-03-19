@@ -13,9 +13,12 @@ const BeneficiaryList = ({ showForm, onEdit }) => {
     const fetchBeneficiaries = async () => {
         try {
             setLoading(true);
+            console.log('Fetching beneficiaries...');
             const response = await beneficiaryAPI.getAll();
+            console.log('Beneficiaries response:', response);
             setBeneficiaries(response.data);
         } catch (err) {
+            console.error('Beneficiaries fetch error:', err);
             setError('Failed to fetch beneficiaries');
         } finally {
             setLoading(false);

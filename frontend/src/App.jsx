@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { setAuthToken } from './services/api';
 import Navbar from './components/Navbar';
+import MockDataIndicator from './components/MockDataIndicator';
 import Home from './pages/Home';
 import Donors from './pages/Donors';
 import Campaigns from './pages/Campaigns';
@@ -20,9 +21,12 @@ function App() {
 
   const ProtectedRoute = ({ children }) => {
     const token = localStorage.getItem('token');
+    console.log('ProtectedRoute check - token exists:', !!token);
     if (!token) {
+      console.log('No token found, redirecting to login');
       return <Navigate to="/admin-login" />;
     }
+    console.log('Token found, rendering protected component');
     return children;
   };
 
@@ -30,6 +34,7 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
+        <MockDataIndicator />
         <Routes>
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/" element={
@@ -61,7 +66,7 @@ function App() {
         </Routes>
       </div>
     </Router>
-  );
+  )
 }
 
 export default App;

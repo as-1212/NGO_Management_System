@@ -13,9 +13,12 @@ const Dashboard = () => {
     const fetchDashboardStats = async () => {
         try {
             setLoading(true);
+            console.log('Fetching dashboard stats...');
             const response = await dashboardAPI.getStats();
+            console.log('Dashboard stats response:', response);
             setStats(response.data);
         } catch (err) {
+            console.error('Dashboard stats error:', err);
             setError('Failed to fetch dashboard statistics');
         } finally {
             setLoading(false);

@@ -1,9 +1,9 @@
 USE ngo_management;
 
--- Insert Admin Users (password: admin123)
+-- Insert Admin Users (password: NGO@Demo2024!)
 INSERT INTO Admin (username, password, email, role) VALUES
-('admin', '$2b$10$rQZ8Z/KGvGJjWqZjZjZjZO7Z8Z/KGvGJjWqZjZjZjZO7Z8Z/KGvGJj', 'admin@ngo.com', 'super_admin'),
-('manager', '$2b$10$rQZ8Z/KGvGJjWqZjZjZjZO7Z8Z/KGvGJjWqZjZjZjZO7Z8Z/KGvGJj', 'manager@ngo.com', 'admin');
+('admin', '$2a$10$EFM2IacX7BabLsCAwSWWEeesyjTsZTEu5h/8vteysG6pAkZo/njWe', 'admin@ngo.com', 'super_admin'),
+('manager', '$2a$10$EFM2IacX7BabLsCAwSWWEeesyjTsZTEu5h/8vteysG6pAkZo/njWe', 'manager@ngo.com', 'admin');
 
 -- Insert Sample Donors
 INSERT INTO Donor (name, email, phone, address) VALUES

@@ -13,9 +13,12 @@ const CampaignList = ({ showForm, onEdit }) => {
     const fetchCampaigns = async () => {
         try {
             setLoading(true);
+            console.log('Fetching campaigns...');
             const response = await campaignAPI.getAll();
+            console.log('Campaigns response:', response);
             setCampaigns(response.data);
         } catch (err) {
+            console.error('Campaigns fetch error:', err);
             setError('Failed to fetch campaigns');
         } finally {
             setLoading(false);

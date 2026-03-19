@@ -16,9 +16,12 @@ const Donors = () => {
     const fetchDonors = async () => {
         try {
             setLoading(true);
+            console.log('Fetching donors...');
             const response = await donorAPI.getAll();
+            console.log('Donors response:', response);
             setDonors(response.data);
         } catch (err) {
+            console.error('Donors fetch error:', err);
             setError('Failed to fetch donors');
         } finally {
             setLoading(false);

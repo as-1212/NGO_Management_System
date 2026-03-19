@@ -24,7 +24,10 @@ const AdminLogin = () => {
         setError('');
 
         try {
+            console.log('Attempting login with:', formData.username);
             const response = await adminAPI.login(formData);
+            console.log('Login response:', response);
+            
             const { token, admin } = response.data;
             
             // Store token and user info
@@ -34,10 +37,13 @@ const AdminLogin = () => {
             // Set auth token for API calls
             setAuthToken(token);
             
+            console.log('Login successful, redirecting...');
+            
             // Redirect to dashboard
             navigate('/');
         } catch (err) {
-            setError(err.response?.data?.error || 'Login failed');
+            console.error('Login error:', err);
+            setError(err.response?.data?.error || err.message || 'Login failed');
         } finally {
             setLoading(false);
         }
@@ -106,7 +112,7 @@ const AdminLogin = () => {
                     }}>
                         <h4 style={{ marginBottom: '1rem' }}>Demo Credentials:</h4>
                         <p><strong>Username:</strong> admin</p>
-                        <p><strong>Password:</strong> admin123</p>
+                        <p><strong>Password:</strong> NGO@Demo2024!</p>
                         <small style={{ color: '#666' }}>
                             Note: For demo purposes, use the credentials above.
                         </small>

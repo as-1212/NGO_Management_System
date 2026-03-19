@@ -27,6 +27,14 @@ const DonationForm = ({ donation, onSuccess, onCancel }) => {
             setDonors(response.data);
         } catch (err) {
             console.error('Failed to fetch donors:', err);
+            // Use mock data if API fails
+            setDonors([
+                { donor_id: 1, name: 'John Smith', email: 'john.smith@email.com' },
+                { donor_id: 2, name: 'Sarah Johnson', email: 'sarah.j@email.com' },
+                { donor_id: 3, name: 'Michael Brown', email: 'michael.b@email.com' },
+                { donor_id: 4, name: 'Emily Davis', email: 'emily.d@email.com' },
+                { donor_id: 5, name: 'Robert Wilson', email: 'robert.w@email.com' }
+            ]);
         }
     };
 
@@ -36,6 +44,13 @@ const DonationForm = ({ donation, onSuccess, onCancel }) => {
             setCampaigns(response.data.filter(c => c.status === 'active'));
         } catch (err) {
             console.error('Failed to fetch campaigns:', err);
+            // Use mock data if API fails
+            setCampaigns([
+                { campaign_id: 1, campaign_name: 'Clean Water Initiative', target_amount: 50000 },
+                { campaign_id: 2, campaign_name: 'Education for All', target_amount: 75000 },
+                { campaign_id: 3, campaign_name: 'Healthcare Support', target_amount: 100000 },
+                { campaign_id: 4, campaign_name: 'Food Security Program', target_amount: 60000 }
+            ]);
         }
     };
 

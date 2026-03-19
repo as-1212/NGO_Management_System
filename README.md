@@ -173,7 +173,7 @@ The frontend will run on `http://localhost:3000`
 For demo purposes, use these credentials:
 
 **Username:** admin  
-**Password:** admin123
+**Password:** NGO@Demo2024!
 
 ## 📁 Project Structure
 
