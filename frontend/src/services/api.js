@@ -23,25 +23,21 @@ API.interceptors.response.use(
 
 // Helper function to handle API calls with fallback to mock data
 const apiCall = async (realAPI, mockAPIFunction, ...args) => {
-    // Always use mock data for demo purposes
-    console.log('Using mock data for API call');
-    return await mockAPIFunction(...args);
-    
-    // Original code (commented out)
-    /*
     if (useMockData) {
+        console.log('Using mock data for API call');
         return await mockAPIFunction(...args);
     }
     try {
+        console.log('Attempting real API call');
         return await realAPI(...args);
     } catch (error) {
         if (error.code === 'ERR_NETWORK' || error.code === 'ECONNREFUSED') {
+            console.log('Backend not available, switching to mock data');
             useMockData = true;
             return await mockAPIFunction(...args);
         }
         throw error;
     }
-    */
 };
 
 // Donor APIs
@@ -89,11 +85,7 @@ export const beneficiaryAPI = {
 
 // Admin APIs
 export const adminAPI = {
-    login: (credentials) => {
-        // Always use mock data for login to ensure it works
-        console.log('Using mock API for login');
-        return mockAPI.adminLogin(credentials);
-    },
+    login: (credentials) => apiCall(() => API.post('/admin/login', credentials), mockAPI.adminLogin, credentials),
     getProfile: () => apiCall(() => API.get('/admin/profile'), () => Promise.resolve({ data: { admin_id: 1, username: 'admin', email: 'admin@ngo.com', role: 'super_admin' } })),
     updateProfile: (data) => apiCall(() => API.put('/admin/profile', data), () => Promise.resolve({ data: { message: 'Profile updated successfully' } })),
     changePassword: (data) => apiCall(() => API.put('/admin/change-password', data), () => Promise.resolve({ data: { message: 'Password changed successfully' } })),
